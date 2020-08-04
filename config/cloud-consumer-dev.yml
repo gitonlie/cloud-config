@@ -27,3 +27,7 @@ management:
     web:
       exposure:
         include: '*'
+  endpoint:
+    health:
+      # 详细信息显示给所有用户。
+      show-details: always
