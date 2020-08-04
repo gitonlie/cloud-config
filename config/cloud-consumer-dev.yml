@@ -1,2 +1,2 @@
-server:
-  port: 8082
+custom:
+  data: 10001
