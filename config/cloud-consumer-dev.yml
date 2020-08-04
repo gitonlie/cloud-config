@@ -1,2 +1,29 @@
 custom:
   data: 10001
+
+server:
+  port: 8082
+
+eureka:
+  client:
+    registerWithEureka: true #是否向服务注册中心注册自己
+    fetchRegistry: true #是否检索服务
+    serviceUrl: #服务注册中心的配置内容，指定服务注册中心的位置
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+      preferIpAddress:  true
+      instance-id:      ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+
+#用来暴露endpoints的，由于endpoints包含很多敏感信息，除了health、info两个支持直接访问外，
+#其他的默认不支持直接访问，可以指定某个端点访问,如下
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: hystrix.stream
+#现在做测试，所以用通配符，可以访问所有端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
